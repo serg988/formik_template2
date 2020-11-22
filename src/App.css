@@ -41,7 +41,7 @@ select {
   color: red;
 }
 button {
-  background-color: rgb(3, 91, 3);
+  background-color: rgb(3, 171, 3);
   color: #fff;
   padding: 10px;
   font-size: 1.2rem;
@@ -49,4 +49,5 @@ button {
 }
 button:hover {
   opacity: 0.9;
+  transform: scale(0.9);
 }

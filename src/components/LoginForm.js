@@ -1,14 +1,51 @@
-import React from 'react'
+import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./FormikControl";
 
 const LoginForm = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
-export default LoginForm
+  const validationSchema = Yup.object({
+    email: Yup.string().email("Invalid email format").required("Required!"),
+    password: Yup.string().required("Required!"),
+  });
+
+  const onSubmit = (values, onSubmitProps) => {
+    console.log("Form Data: ", values);
+    onSubmitProps.resetForm();
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {(formik) => {
+        return (
+          <Form>
+            <FormikControl
+              control='chakrainput'
+              type='email'
+              label='Email'
+              name='email'
+            />
+            <FormikControl
+              control='chakrainput'
+              type='password'
+              label='Password'
+              name='password'
+            />
+            <button type='submit' disabled={!formik.isValid}>Submit</button>
+          </Form>
+        );
+      }}
+    </Formik>
+  );
+};
+
+export default LoginForm;
